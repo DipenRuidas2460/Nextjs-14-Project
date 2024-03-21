@@ -10,8 +10,6 @@ function Contactpage() {
   useEffect(() => {
     setIsClient(true);
   }, []);
-
-  const a = Math.random();
   
   return (
     <div className={styles.container}>
@@ -19,7 +17,7 @@ function Contactpage() {
         <Image src="/contact.png" alt="" fill className={styles.img} />
       </div>
       <div className={styles.formContainer}>
-        {isClient && a}
+        {isClient}
         <form action="" className={styles.form}>
           <input type="text" placeholder="Name and Surname" />
           <input type="text" placeholder="Email Address" />

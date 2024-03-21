@@ -3,7 +3,10 @@ import styles from "./singlePost.module.css";
 import PostUser from "@/components/postUser/postUser";
 
 const getData = async (slug) => {
-  const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${slug}`);
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/posts/${slug}`,
+    { next: { revalidate: 3600 } }
+  );
   if (!res.ok) {
     throw new Error("Something Went Wrong!");
   }
@@ -11,8 +14,8 @@ const getData = async (slug) => {
   return res.json();
 };
 
-async function SinglePostpage({params}) {
-  const {slug} = params
+async function SinglePostpage({ params }) {
+  const { slug } = params;
   const post = await getData(slug);
   return (
     <div className={styles.container}>
@@ -34,7 +37,7 @@ async function SinglePostpage({params}) {
             height={50}
             width={50}
           />
-          <PostUser userId={post.userId}/>
+          <PostUser userId={post.userId} />
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
             <span className={styles.detailValue}>21.03.2024</span>

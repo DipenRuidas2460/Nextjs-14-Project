@@ -3,10 +3,13 @@ import GitHub from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import { authConfig } from "./auth.config";
-import User from "./models/User";
+import { User } from "./models";
+import { connectToDb } from "./utils";
+
 
 const login = async (credentials) => {
   try {
+    connectToDb();
     const user = await User.findOne({
       where: { username: credentials.username },
     });
@@ -53,6 +56,7 @@ export const {
   callbacks: {
     async signIn({ user, account, profile }) {
       if (account.provider === "github") {
+        connectToDb();
         try {
           const existingUser = await User.findOne({
             where: { email: profile.email },
