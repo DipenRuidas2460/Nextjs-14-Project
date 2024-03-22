@@ -1,23 +1,20 @@
 "use client";
 import Image from "next/image";
 import styles from "./contact.module.css";
-import { useEffect, useState } from "react";
+
+
+export const metadata = {
+  title: "Contact Page",
+  description: "Contact description",
+};
 
 function Contactpage() {
-  const [isClient, setIsClient] = useState(false);
-
-  // prevent server side rendering error only show the client side component.
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-  
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>
         <Image src="/contact.png" alt="" fill className={styles.img} />
       </div>
       <div className={styles.formContainer}>
-        {isClient}
         <form action="" className={styles.form}>
           <input type="text" placeholder="Name and Surname" />
           <input type="text" placeholder="Email Address" />

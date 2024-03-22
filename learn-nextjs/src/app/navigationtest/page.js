@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -12,14 +11,14 @@ const NavigationTestPage = () => {
 
   const handleClick = () => {
     console.log("Clicked!");
-    router.push("/");
+    router.forward();
   };
 
   return (<div>
     <Link href="/" prefetch={false}>Click here</Link>
     <br/>
     <br/>
-    <button onClick={handleClick}>Send</button>
+    <button onClick={handleClick}>Write and Redirect</button>
   </div>)
 };
 
