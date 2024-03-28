@@ -12,12 +12,12 @@ const getData = async () => {
   return res.json();
 };
 
-async function Blogpage({ params, searchParams }) {
+async function Blogpage() {
   const posts = await getData();
   return (
     <div className={styles.container}>
-      {posts?.map((post) => (
-        <div className={styles.post} key={post.id}>
+      {posts?.map((post, i) => (
+        <div className={styles.post} key={i}>
           <PostCard post={post} />
         </div>
       ))}

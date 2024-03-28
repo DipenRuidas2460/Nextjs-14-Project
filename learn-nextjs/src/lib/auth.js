@@ -6,13 +6,10 @@ import { authConfig } from "./auth.config";
 import { User } from "./models";
 import { connectToDb } from "./utils";
 
-
 const login = async (credentials) => {
   try {
     connectToDb();
-    const user = await User.findOne({
-      where: { username: credentials.username },
-    });
+    const user = await User.findOne({ username: credentials.username });
 
     if (!user) throw new Error("Wrong credentials!");
 
@@ -58,9 +55,7 @@ export const {
       if (account.provider === "github") {
         connectToDb();
         try {
-          const existingUser = await User.findOne({
-            where: { email: profile.email },
-          });
+          const existingUser = await User.findOne({ email: profile.email });
 
           if (!existingUser) {
             await User.create({
